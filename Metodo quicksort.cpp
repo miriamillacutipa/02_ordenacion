@@ -10,8 +10,13 @@ int main() {
 	cout << "Ingrese el numero de elementos: ";
 	cin >> n; 
 	
+	if (n <= 0) {
+    cout << "Cantidad no valida" << endl;
+    return 0;
+	}
+	
 	int A[n];
-	cout <<"Ingrese los elementos: " << endl;
+	cout <<"\nIngrese los elementos: " << endl;
 	for(int i=0; i<n; i++) {
 		cin >> A[i];
 	}
@@ -21,10 +26,13 @@ int main() {
 	for(int i=0; i<n; i++) {
 		cout << A[i] << " ";
 	}
+	return 0;
 }
 
 void QuickSort(int A[], int n) {
-	Reduce(A, 0, n-1);
+    if (n > 1) {
+        Reduce(A, 0, n - 1);
+    }
 }
 
 void Reduce (int A[], int inic, int fin) {
@@ -36,8 +44,8 @@ void Reduce (int A[], int inic, int fin) {
 	
 	while(cen==1) {
 		cen=0;
-		while (A[pos] <= A[der] && pos != der) {
-			der= der-1;
+		while (pos != der && A[pos] <= A[der]) {
+    	der = der - 1;
 		}
 		if(pos!=der) {
 			aux = A[pos];
@@ -45,8 +53,8 @@ void Reduce (int A[], int inic, int fin) {
 			A[der] = aux;
 			pos =der;
 			
-			while (A[pos]>= A[izq] && pos != izq) {
-				izq= izq +1;
+			while (pos != izq && A[pos] >= A[izq]) {
+    		izq = izq + 1;
 			}
 			
 			if(pos != izq) {
